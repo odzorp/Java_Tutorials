@@ -1,100 +1,77 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+// Superclass Shape
+class Shape {
+    double area;
+    double perimeter;
+
+    // Method to calculate the area of the shape
+    void calculateArea() {
+        System.out.println("Area of the shape: " + area);
+    }
+
+    // Method to calculate the perimeter of the shape
+    void calculatePerimeter() {
+        System.out.println("Perimeter of the shape: " + perimeter);
+    }
+}
+
+// Subclass Circle
+class Circle extends Shape {
+    double radius;
+
+    // Constructor to initialize the radius
+    Circle(double radius) {
+        this.radius = radius;
+        this.area = Math.PI * Math.pow(radius, 2);
+        this.perimeter = 2 * Math.PI * radius;
+    }
+
+    // Overriding the calculateArea() method
+    @Override
+    void calculateArea() {
+        System.out.println("Area of the circle: " + area);
+    }
+
+    // Overriding the calculatePerimeter() method
+    @Override
+    void calculatePerimeter() {
+        System.out.println("Perimeter of the circle: " + perimeter);
+    }
+}
+
+// Subclass Rectangle
+class Rectangle extends Shape {
+    double length;
+    double breadth;
+
+    // Constructor to initialize the length and breadth
+    Rectangle(double length, double breadth) {
+        this.length = length;
+        this.breadth = breadth;
+        this.area = length * breadth;
+        this.perimeter = 2 * (length + breadth);
+    }
+
+    // Overriding the calculateArea() method
+    @Override
+    void calculateArea() {
+        System.out.println("Area of the rectangle: " + area);
+    }
+
+    // Overriding the calculatePerimeter() method
+    @Override
+    void calculatePerimeter() {
+        System.out.println("Perimeter of the rectangle: " + perimeter);
+    }
+}
 
 public class Main {
-  public static void main(String[] args) {
-    // Example 1: Using matches() method to find a pattern in a string
-    String text1 = "visit w3schools1";
-    String pattern1 = "w3schools";
-    if (text1.toLowerCase().matches(".*" + pattern1.toLowerCase() + ".*")) {
-      System.out.println("Pattern 'w3schools' found in the text.");
+    public static void main(String[] args) {
+        Circle circle = new Circle(5);
+        circle.calculateArea();
+        circle.calculatePerimeter();
+
+        Rectangle rectangle = new Rectangle(4, 6);
+        rectangle.calculateArea();
+        rectangle.calculatePerimeter();
     }
-
-    // Example 2: Using Pattern and Matcher classes to find a pattern in a string
-    String text2 = "visit w3schools1";
-    String pattern2 = "w3schools";
-    Pattern p = Pattern.compile(pattern2, Pattern.CASE_INSENSITIVE);
-    Matcher m = p.matcher(text2);
-    if (m.find()) {
-      System.out.println("Pattern 'w3schools' found in the text.");
-    }
-
-    // Example 3: Adding two numbers with user input
-    Scanner myObj = new Scanner(System.in);
-    System.out.println("Enter first number");
-    int a = myObj.nextInt();
-    System.out.println("Enter second number");
-    int b = myObj.nextInt();
-    int c = a + b;
-    System.out.println("Sum of two numbers is " + c);
-
-    // Example 4: Counting the number of words in a string
-    String str = "Hello World! CASTOR OIL IS GOOd for the body and soul";
-    int countWords = str.split("\\s+").length;
-    System.out.println("Number of words: " + countWords);
-
-    // Example 5: Reversing a string
-    String originalStr = "Hello";
-    String reversedStr = "";
-    for (int i = originalStr.length() - 1; i >= 0; i--) {
-      reversedStr += originalStr.charAt(i);
-    }
-    System.out.println("Reversed String: " + reversedStr);
-
-    // Example 6: Calculating the sum of an array
-    int[] arr = { 1, 2, 3, 4, 5 };
-    int sum = 0;
-    for (int i = 0; i < arr.length; i++) {
-      sum += arr[i];
-    }
-    System.out.println("Sum of array elements: " + sum);
-
-    // Example 7: Converting a string to an array
-    String myStr = "Hello";
-    char[] charArray = myStr.toCharArray();
-    System.out.println(charArray[0]);
-    for (char i : charArray) {
-      System.out.println(i);
-    }
-
-    // Example 8: Sorting an array
-    String[] cars = { "Volvo", "BMW", "Ford", "Mazda", "Tesla" };
-    Arrays.sort(cars);
-    for (String i : cars) {
-      System.out.println(i);
-    }
-
-    // Example 9: Looping through an ArrayList
-    ArrayList<String> carsList = new ArrayList<String>(
-        Arrays.asList("Volvo", "tshs", "kjssj", "jsjsjs", "kskksn", "lmmm", "esss"));
-    for (String car : carsList) {
-      System.out.println(car);
-    }
-
-    // Example 10: Looping through a HashMap
-    HashMap<String, String> capitalCities = new HashMap<String, String>();
-    capitalCities.put("England", "London");
-    capitalCities.put("Germany", "Berlin");
-    capitalCities.put("Norway", "Oslo");
-    capitalCities.put("USA", "Washington DC");
-    for (String country : capitalCities.keySet()) {
-      System.out.println("key: " + country + " value: " + capitalCities.get(country));
-    }
-
-    // Example 11: Looping through an enum
-    for (Level myVar : Level.values()) {
-      System.out.println(myVar);
-    }
-  }
-
-  // Example 11: Enum definition for looping through
-  enum Level {
-    LOW,
-    MEDIUM,
-    HIGH
-  }
 }
